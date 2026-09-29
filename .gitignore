@@ -1,0 +1,39 @@
+# secrets — never commit
+.env
+*.pem
+.aws/
+credentials
+
+# data (large / regenerable)
+data/raw/*
+!data/raw/.gitkeep
+data/interim/*
+data/processed/*
+!data/*/.gitkeep
+
+# artifacts
+artifacts/*.pkl
+artifacts/*.pt
+artifacts/*.db
+artifacts/yolo/
+rag/store/*.index
+rag/store/*.npy
+rag/store/*.pkl
+
+# cv dataset (bring your own)
+cv/dataset/*/images/*
+cv/dataset/*/labels/*
+
+# python
+__pycache__/
+*.py[cod]
+.venv/
+.ipynb_checkpoints/
+.pytest_cache/
+
+# os
+.DS_Store
+
+# aws scripts
+scripts/aws/.aws-state
+*.pem

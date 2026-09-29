@@ -1,0 +1,62 @@
+# ══════════════════════════════════════════════════════════════════
+# SmartLogix AI — OPTIONAL extras
+#
+# NONE of these are needed for the pipeline to run end to end.
+# Every one has an automatic fallback in the code.
+#
+# Install them ONE GROUP AT A TIME, not all at once — if a single
+# package fails to build, pip aborts the whole file and you end up
+# with nothing installed.
+# ══════════════════════════════════════════════════════════════════
+
+# ---- faster gradient boosting -------------------------------------
+# Fallback: sklearn HistGradientBoosting (already in requirements.txt)
+#   pip install xgboost lightgbm imbalanced-learn
+# xgboost>=2.0
+# lightgbm>=4.1
+# imbalanced-learn>=0.12
+
+# ---- route optimisation (Stage 08) --------------------------------
+# Fallback: built-in nearest-neighbour + 2-opt. Results are close.
+#   pip install ortools
+# ortools>=9.8
+
+# ---- computer vision (Stage 09) -----------------------------------
+# Large download (~2.5 GB with torch). Only needed once you have
+# annotated drone images. Consider Google Colab instead.
+#   pip install ultralytics opencv-python-headless torch torchvision Pillow
+# ultralytics>=8.3
+# opencv-python-headless>=4.9
+# torch>=2.2
+# torchvision>=0.17
+# Pillow>=10.2
+
+# ---- BERT sentiment (Stage 10 --bert) -----------------------------
+# Fallback: TF-IDF baseline, which is the default and runs on CPU.
+#   pip install transformers sentence-transformers
+# transformers>=4.40
+# sentence-transformers>=2.7
+
+# ---- dense vector search (Stage 11) -------------------------------
+# Fallback: BM25 keyword retrieval (rank-bm25, already installed).
+# faiss-cpu often fails to install on Windows — that is expected.
+#   pip install faiss-cpu
+# faiss-cpu>=1.8
+
+# ---- PostgreSQL / AWS RDS -----------------------------------------
+# Only needed if you move off SQLite.
+#   pip install psycopg2-binary
+# psycopg2-binary>=2.9
+
+# ---- AWS deployment -----------------------------------------------
+#   pip install boto3 awscli
+# boto3>=1.34
+# awscli>=1.32
+
+# ---- in-process GGUF LLM ------------------------------------------
+# ⚠ REQUIRES A C++ COMPILER. On Windows this needs Visual Studio
+#   Build Tools (~6 GB) and frequently fails anyway.
+#   DO NOT INSTALL THIS. Use Ollama instead — it is a normal .exe
+#   installer and the project talks to it over HTTP via `requests`.
+#   See docs/LOCAL_LLM_SETUP.md
+# llama-cpp-python>=0.2.79
