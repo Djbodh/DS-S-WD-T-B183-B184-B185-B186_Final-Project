@@ -138,28 +138,6 @@ smartlogix-ai/
 | 8 | Dashboards: delivery, fleet, drone health, orders, analytics | `app/dashboard.py` |
 
 ---
-
-## Three design decisions worth defending in your viva
-
-**1. Structured facts go to SQL, never to vectors.**
-"Where is ORD-00125?" is answered by a parameterised SQL query. Embedding search
-would happily return ORD-00126 because the strings look alike. The vector store
-holds only policies, product text, review digests and lane cards — things with no
-exact key.
-
-**2. Every agent is tool-first.**
-The LLM receives the result of a query or a model prediction and phrases it. It
-never invents an order status, a price or an ETA. If the tool returns nothing,
-the agent says so. This is what stops the chatbot hallucinating in front of an
-evaluator.
-
-**3. Physics overrides the model.**
-`MODE_LIMITS` encodes payload and range caps. A 95%-accurate classifier is wrong
-one time in twenty; when it is wrong in a way that violates physics, the API
-corrects it and records the override in the response.
-
----
-
 ## Data quality findings
 
 Documented in `reports/02_dedupe_audit.csv` and `reports/02_null_report.csv`:
